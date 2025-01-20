@@ -51,15 +51,15 @@ const Ghibli = () => {
 
     const nextSlide = () => {
         setCurrentIndex((prev) => {
-            const newIndex = prev + visibleSlides; 
-            return newIndex >= filmes.length ? 0 : newIndex; 
+            const newIndex = prev + visibleSlides;
+            return newIndex >= filmes.length ? 0 : newIndex;
         });
     };
-    
+
     const prevSlide = () => {
         setCurrentIndex((prev) => {
-            const newIndex = prev - visibleSlides; 
-            return newIndex < 0 ? filmes.length - visibleSlides : newIndex; 
+            const newIndex = prev - visibleSlides;
+            return newIndex < 0 ? filmes.length - visibleSlides : newIndex;
         });
     };
 
@@ -79,18 +79,20 @@ const Ghibli = () => {
                         {filmes.map((filme) => (
                             <div
                                 key={filme.id}
-                                className="flex-shrink-0 p-2"
+                                className="flex-shrink-0 p-4"
                                 style={{
-                                    width: `${100 / visibleSlides}%`, 
+                                    width: `${100 / visibleSlides}%`,
                                 }}
                                 onMouseEnter={() => setHoveredCard(filme.id)}
                                 onMouseLeave={() => setHoveredCard(null)}
                             >
-                                <div className='relative w-[20vw] h-[50vh] p-5 rounded-lg shadow-lg'
+                                <div className={`relative w-[20vw] h-[50vh] p-5 rounded-lg shadow-lg transition-transform 
+                                duration-500 ease-in-out hover:scale-105 hover:shadow-xl ${hoveredCard && hoveredCard !== filme.id ? 'blur-sm opacity-50' : 'blur-none opacity-100'
+                                    }`}
                                     onMouseEnter={() => setHoveredCard(filme.id)}
                                     onMouseLeave={() => setHoveredCard(null)} >
                                     {hoveredCard === filme.id ? (
-                                        <div className="absolute inset-0 bg-gradient-to-t from-sky-50 to-blue-400 rounded-xl p-4 shadow-xl overflow-y-auto">
+                                        <div className="absolute inset-0 bg-gradient-to-t bg-sky-50 rounded-xl p-4 shadow-xl overflow-y-auto">
                                             <h2 className="text-xl font-bold">{filme.title}</h2>
                                             <h2>{filme.original_title}</h2>
                                             <p>
