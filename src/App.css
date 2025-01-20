@@ -1,0 +1,6 @@
+html,
+body,
+#root {
+  height: 100%; /* Garante que a altura ocupe 100% da tela */
+  margin: 0;
+}
